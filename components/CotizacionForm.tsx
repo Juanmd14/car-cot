@@ -161,10 +161,10 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
 
   if (submitted) {
     return (
-      <div className="text-center py-12">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-6">
+      <div className="text-center py-8 md:py-12">
+        <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-green-100 rounded-full mb-4 md:mb-6">
           <svg
-            className="w-10 h-10 text-green-600"
+            className="w-8 h-8 md:w-10 md:h-10 text-green-600"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -177,15 +177,15 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
             />
           </svg>
         </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">
+        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
           ¡Cotización enviada!
         </h3>
-        <p className="text-gray-600 mb-8">
+        <p className="text-sm md:text-base text-gray-600 mb-6 md:mb-8">
           Te contactaremos pronto con las mejores ofertas para tu vehículo.
         </p>
         <button
           onClick={() => setSubmitted(false)}
-          className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:scale-105 cursor-pointer"
+          className="bg-linear-to-r from-indigo-600 to-purple-600 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-xl text-sm md:text-base font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:scale-105 cursor-pointer"
         >
           Hacer otra cotización
         </button>
@@ -194,19 +194,19 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
       {/* Datos del Vehículo */}
       <div>
-        <div className="flex items-center gap-2 mb-6">
-          <Car className="h-6 w-6 text-indigo-600" />
-          <h3 className="text-xl font-bold text-gray-900">
+        <div className="flex items-center gap-2 mb-3 md:mb-6">
+          <Car className="h-5 w-5 md:h-6 md:w-6 text-indigo-600" />
+          <h3 className="text-base md:text-xl font-bold text-gray-900">
             Datos del Vehículo
           </h3>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
           <div className="relative" ref={suggestionRef}>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-xs md:text-sm font-semibold text-gray-700 mb-2">
               Marca *
             </label>
             <div className="relative">
@@ -219,25 +219,25 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
                     setShowSuggestions(true);
                   }
                 }}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900"
+                className="w-full px-3 md:px-4 py-2.5 md:py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900 text-sm md:text-base"
                 placeholder="Escribe para buscar..."
                 autoComplete="off"
               />
-              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-gray-400 pointer-events-none" />
             </div>
             
             {/* Sugerencias */}
             {showSuggestions && filteredMarcas.length > 0 && (
-              <div className="absolute z-10 w-full mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+              <div className="absolute z-10 w-full mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-lg max-h-48 md:max-h-60 overflow-y-auto">
                 {filteredMarcas.map((marca, index) => (
                   <button
                     key={index}
                     type="button"
                     onClick={() => handleSelectMarca(marca)}
-                    className="w-full px-4 py-3 text-left hover:bg-purple-50 transition-colors flex items-center gap-3 group"
+                    className="w-full px-3 md:px-4 py-2.5 md:py-3 text-left hover:bg-purple-50 transition-colors flex items-center gap-2 md:gap-3 group"
                   >
                     <Car className="h-4 w-4 text-gray-400 group-hover:text-purple-600 transition-colors" />
-                    <span className="text-gray-900 group-hover:text-purple-900 font-medium">
+                    <span className="text-gray-900 group-hover:text-purple-900 font-medium text-sm md:text-base">
                       {marca}
                     </span>
                   </button>
@@ -246,12 +246,12 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
             )}
             
             {errors.marca && (
-              <p className="mt-2 text-sm text-red-600">{errors.marca}</p>
+              <p className="mt-1.5 md:mt-2 text-xs md:text-sm text-red-600">{errors.marca}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-xs md:text-sm font-semibold text-gray-700 mb-2">
               Año *
             </label>
             <input
@@ -261,11 +261,11 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
               max="2026"
               value={formData.año}
               onChange={handleChange}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900"
+              className="w-full px-3 md:px-4 py-2.5 md:py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900 text-sm md:text-base"
               placeholder="2020"
             />
             {errors.año && (
-              <p className="mt-2 text-sm text-red-600">{errors.año}</p>
+              <p className="mt-1.5 md:mt-2 text-xs md:text-sm text-red-600">{errors.año}</p>
             )}
           </div>
         </div>
@@ -273,16 +273,16 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
 
       {/* Datos Personales */}
       <div>
-        <div className="flex items-center gap-2 mb-6">
-          <User className="h-6 w-6 text-indigo-600" />
-          <h3 className="text-xl font-bold text-gray-900">
+        <div className="flex items-center gap-2 mb-3 md:mb-6">
+          <User className="h-5 w-5 md:h-6 md:w-6 text-indigo-600" />
+          <h3 className="text-base md:text-xl font-bold text-gray-900">
             Datos Personales
           </h3>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-xs md:text-sm font-semibold text-gray-700 mb-2">
               <Mail className="inline h-4 w-4 mr-1" />
               Email *
             </label>
@@ -291,16 +291,16 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
               type="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900"
+              className="w-full px-3 md:px-4 py-2.5 md:py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900 text-sm md:text-base"
               placeholder="ejemplo@email.com"
             />
             {errors.email && (
-              <p className="mt-2 text-sm text-red-600">{errors.email}</p>
+              <p className="mt-1.5 md:mt-2 text-xs md:text-sm text-red-600">{errors.email}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-xs md:text-sm font-semibold text-gray-700 mb-2">
               <Calendar className="inline h-4 w-4 mr-1" />
               Fecha de Nacimiento *
             </label>
@@ -311,24 +311,24 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
               max="2026-12-31"
               value={formData.fechaNacimiento}
               onChange={handleChange}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900"
+              className="w-full px-3 md:px-4 py-2.5 md:py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900 text-sm md:text-base"
             />
             {errors.fechaNacimiento && (
-              <p className="mt-2 text-sm text-red-600">
+              <p className="mt-1.5 md:mt-2 text-xs md:text-sm text-red-600">
                 {errors.fechaNacimiento}
               </p>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-xs md:text-sm font-semibold text-gray-700 mb-2">
               Género *
             </label>
             <select
               name="genero"
               value={formData.genero}
               onChange={handleChange}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900"
+              className="w-full px-3 md:px-4 py-2.5 md:py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900 text-sm md:text-base"
             >
               <option value="">Seleccionar...</option>
               <option value="masculino">Masculino</option>
@@ -336,7 +336,7 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
               <option value="otro">Otro</option>
             </select>
             {errors.genero && (
-              <p className="mt-2 text-sm text-red-600">{errors.genero}</p>
+              <p className="mt-1.5 md:mt-2 text-xs md:text-sm text-red-600">{errors.genero}</p>
             )}
           </div>
         </div>
@@ -344,7 +344,7 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
 
       <button
         type="submit"
-        className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-xl font-bold text-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all shadow-lg cursor-pointer"
+        className="w-full bg-linear-to-r from-indigo-600 to-purple-600 text-white py-3 md:py-4 rounded-xl font-bold text-sm md:text-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 active:scale-95 transition-all shadow-lg cursor-pointer"
       >
         Obtener Cotización
       </button>
