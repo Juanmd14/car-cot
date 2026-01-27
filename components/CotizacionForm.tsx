@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Car, User, Calendar, ChevronDown } from "lucide-react";
+import { Car, User, Calendar, ChevronDown, Mail } from "lucide-react";
 
 type CotizacionFormProps = {
   codigoPostal: string;
@@ -10,6 +10,7 @@ type CotizacionFormProps = {
 type FormData = {
   marca: string;
   año: string;
+  email: string;
   fechaNacimiento: string;
   genero: string;
 };
@@ -43,6 +44,7 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
   const [formData, setFormData] = useState<FormData>({
     marca: "",
     año: "",
+    email: "",
     fechaNacimiento: "",
     genero: "",
   });
@@ -118,8 +120,25 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
 
     if (!formData.marca.trim()) newErrors.marca = "La marca es requerida";
     if (!formData.año) newErrors.año = "El año es requerido";
-    if (!formData.fechaNacimiento)
+    
+    // Validación de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      newErrors.email = "El email es requerido";
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Email inválido";
+    }
+    
+    // Validación de fecha de nacimiento
+    if (!formData.fechaNacimiento) {
       newErrors.fechaNacimiento = "La fecha de nacimiento es requerida";
+    } else {
+      const year = new Date(formData.fechaNacimiento).getFullYear();
+      if (year < 1920 || year > 2026) {
+        newErrors.fechaNacimiento = "Fecha inválida (1920-2026)";
+      }
+    }
+    
     if (!formData.genero) newErrors.genero = "El género es requerido";
 
     setErrors(newErrors);
@@ -166,7 +185,7 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
         </p>
         <button
           onClick={() => setSubmitted(false)}
-          className="bg-linear-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:scale-105"
+          className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:scale-105 cursor-pointer"
         >
           Hacer otra cotización
         </button>
@@ -264,12 +283,32 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <Mail className="inline h-4 w-4 mr-1" />
+              Email *
+            </label>
+            <input
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900"
+              placeholder="ejemplo@email.com"
+            />
+            {errors.email && (
+              <p className="mt-2 text-sm text-red-600">{errors.email}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               <Calendar className="inline h-4 w-4 mr-1" />
               Fecha de Nacimiento *
             </label>
             <input
               name="fechaNacimiento"
               type="date"
+              min="1920-01-01"
+              max="2026-12-31"
               value={formData.fechaNacimiento}
               onChange={handleChange}
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all text-gray-900"
@@ -305,7 +344,7 @@ export default function CotizacionForm({ codigoPostal }: CotizacionFormProps) {
 
       <button
         type="submit"
-        className="w-full bg-linear-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-xl font-bold text-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all shadow-lg"
+        className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-xl font-bold text-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all shadow-lg cursor-pointer"
       >
         Obtener Cotización
       </button>

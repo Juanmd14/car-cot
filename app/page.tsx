@@ -111,6 +111,11 @@ export default function LandingCotizadora() {
         <div className="relative max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-4 md:gap-12 items-center">
           {/* Left Content - Intro */}
           <div className="text-center md:text-left space-y-2 md:space-y-8">
+             {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white text-sm font-medium">
+              <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+              <span>Más de 50,000 clientes satisfechos</span>
+            </div>
             <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight">
               La manera más{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-pink-200">
@@ -230,14 +235,6 @@ export default function LandingCotizadora() {
         </div>
       </div>
 
-      {/* Floating Badge */}
-      <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 bg-white rounded-full shadow-2xl px-3 py-1.5 md:px-6 md:py-3 hidden lg:flex items-center gap-2 md:gap-3 animate-bounce">
-        <Star className="h-4 w-4 md:h-5 md:w-5 text-yellow-400 fill-yellow-400" />
-        <div className="text-left">
-          <div className="font-bold text-gray-900 text-sm md:text-base">4.9/5</div>
-          <div className="text-xs text-gray-600">50,000+ reviews</div>
-        </div>
-      </div>
     </div>
   );
 }

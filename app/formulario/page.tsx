@@ -11,19 +11,19 @@ function FormularioContent() {
   const codigoPostal = searchParams.get("cp") ?? "";
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-900 to-slate-900 relative overflow-hidden flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden flex items-center justify-center p-4">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Orbes animados */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-700/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-10 md:top-20 left-5 md:left-10 w-48 h-48 md:w-72 md:h-72 bg-purple-700/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 md:bottom-20 right-5 md:right-10 w-64 h-64 md:w-96 md:h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-48 h-48 md:w-64 md:h-64 bg-pink-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         
         {/* Grid animado */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
-            backgroundImage: `linear-linear(rgba(255,255,255,0.1) 1px, transparent 1px),
-                             linear-linear(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
             backgroundSize: '50px 50px',
             animation: 'moveGrid 20s linear infinite'
           }} />
@@ -35,24 +35,30 @@ function FormularioContent() {
         {/* Botón volver */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors mb-6 group"
+          className="inline-flex items-center gap-2 text-white hover:text-purple-300 transition-colors mb-4 md:mb-6 group cursor-pointer"
         >
-          <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
-          <span className="font-medium">Volver al inicio</span>
+          <ArrowLeft className="h-4 w-4 md:h-5 md:w-5 group-hover:-translate-x-1 transition-transform" />
+          <span className="font-medium text-sm md:text-base">Volver al inicio</span>
         </Link>
 
         {/* Card principal con efecto glow */}
         <div className="relative">
           {/* Glow effect */}
-          <div className="absolute -inset-1 bg-linear-to-r from-purple-800 to-pink-600 rounded-3xl blur-xl opacity-50 animate-pulse"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-purple-800 to-pink-600 rounded-2xl md:rounded-3xl blur-xl opacity-50 animate-pulse"></div>
           
           {/* Card del formulario */}
-          <div className="relative bg-white rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12">
+          <div className="relative bg-white rounded-2xl md:rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8 lg:p-10">
             {/* Header */}
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-indigo-500 to-purple-600 rounded-2xl mb-4">
-                <Car className="h-8 w-8 text-white" />
+            <div className="text-center mb-6 md:mb-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl md:rounded-2xl mb-3 md:mb-4 shadow-lg">
+                <Car className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                Completá tus datos
+              </h1>
+              <p className="text-sm md:text-base text-gray-600">
+                Necesitamos algunos datos para generar tu cotización personalizada
+              </p>
             </div>
 
             {/* Formulario */}
@@ -78,8 +84,8 @@ function FormularioContent() {
 export default function FormularioPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-linear-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
-        <div className="text-white text-xl animate-pulse">Cargando...</div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+        <div className="text-white text-lg md:text-xl animate-pulse">Cargando...</div>
       </div>
     }>
       <FormularioContent />
